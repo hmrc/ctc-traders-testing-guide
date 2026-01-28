@@ -1,9 +1,8 @@
 # Human read-able name for this site, displayed in the header bar
-service_name: Example Service Guide/Roadmap
+service_name: CTC Traders API testing guide
 
 # The route that will be used to access this site (with tailing slash)
-service_link: /guides/example-service-guide/
-use_service_link_for_favicon: true
+service_link: /guides/ctc-traders-testing-guide/
 
 # ================================================
 # You shouldn't need to edit anything below here
@@ -17,7 +16,7 @@ show_govuk_logo: true
 
 # Links to show on right-hand-side of header
 header_links:
-  Developer Hub: https://developer.service.hmrc.gov.uk
+  HMRC Developer Hub: https://developer.service.hmrc.gov.uk/
   Getting started: https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub
   API documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   Applications: https://developer.service.hmrc.gov.uk/developer/applications
@@ -27,7 +26,7 @@ footer_links:
   Accessibility statement: https://www.tax.service.gov.uk/accessibility-statement/hmrc-developer-hub
 
 # Enables search functionality. This indexes pages only and is not recommended for single-page sites.
-enable_search: false
+enable_search: true
 
 # Enables the tracking consent banner
 tracking_consent_frontend:
@@ -41,9 +40,9 @@ multipage_nav: true
 collapsible_nav: true
 
 # Table of contents depth – how many levels to include in the table of contents.
-# If your ToC is too long, reduce this number and we'll only show higher-level
+# If your ToC is too long, reduce this number, and we'll only show higher-level
 # headings.
-max_toc_heading_level: 2
+max_toc_heading_level: 5
 
 # Prevent robots from indexing (e.g. whilst in development)
 prevent_indexing: false
