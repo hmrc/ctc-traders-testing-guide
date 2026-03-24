@@ -4,59 +4,996 @@ weight: 4
 description: Software developers, designers, product owners or business analysts. Verify the compatibility of your software with CTC Traders API and learn how to test your application in our sandbox environment.
 ---
 
-# Test scenarios guidelines
+# NCTS6 Test Preparation
 
-Review the following guidelines before starting your testing.
+## Test Guidelines
 
-## Two sets of transit rules and conditions
+### Two sets of transit rules and conditions
 
-Rules and conditions that apply to information exchange (IE) messages as defined in the [NCTS technical interface specification](/guides/ctc-traders-tis/) work differently for Great Britain (GB) and Northern Ireland (XI) because of the Northern Ireland Protocol. Although Northern Ireland is not an EU member state, compliance with the requirements of the Northern Ireland Protocol means that rules and conditions should be applied in the same way as for EU member states.
+Rules and conditions that apply to information exchange (IE) messages as defined in the [NCTS technical interface
+specification](https://developer.service.hmrc.gov.uk/guides/ctc-traders-tis/) work differently for Great Britain (GB)
+and Northern Ireland (XI) because of the Northern Ireland Protocol. Although Northern Ireland is not an EU member state,
+compliance with the requirements of the Northern Ireland Protocol means that rules and conditions should be applied in
+the same way as for EU member states.
 
-[CTC Traders API v3.0](/api-documentation/docs/api/service/common-transit-convention-traders/3.0) integrates with both the Great Britain and Northern Ireland versions of the NCTS test system. These operate identically to the Great Britain and Northern Ireland live versions of the NCTS system.
 
-## Completing transit declarations
+[CTC Traders API v3.0](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders/3.0/oas/page)
+integrates with both the Great Britain and Northern Ireland versions of the NCTS test system. These operate identically
+to the Great Britain and Northern Ireland live versions of the NCTS system.
 
-For comprehensive information about how to complete a ‘Declaration Data’ E_DEC_DAT (IE015) message for NCTS, see [CTC Traders API service guide](/guides/ctc-traders-service-guide/documentation/complete-transit-declaration.html).
+### Completing transit declarations
 
-## Message sender and recipient guidelines
+For comprehensive information about how to complete a ‘Declaration Data’ E_DEC_DAT (IE015) message for NCTS5,
+see [CTC Traders API phase 5 service guide](https://developer.service.hmrc.gov.uk/guides/ctc-traders-phase5-service-guide/documentation/complete-transit-declaration.html).
 
-There are guidelines for entering message sender and recipient details in arrivals and departures messages in the NCTS Trader Test environment that will also apply to the production version of the UK NCTS service.
+For information about entering message recipient details in messages for NCTS6 transit movements that involve other
+CTC member countries,
+see [NCTS technical interface specification](https://developer.service.hmrc.gov.uk/guides/ctc-traders-tis/).
 
-### Message sender
+### Manual intervention
 
-When specifying the message sender of an arrival or departure message, you can enter alphanumeric format data up to 35 characters (‘an..35‘).
+Trader Test simulates both simplified and normal procedures. Simplified procedure declarations are released
+automatically, but a normal procedure declaration requires a manual intervention for it to be processed and released.
 
-We recommend that you should enter the EORI number of the organisation (‘the declarant‘) that is physically sending the message. Alternatively, if you do not know the EORI number of the declarant, you can use the EORI number of the transit movement or prompt for it.
 
-### Message recipient
+When you are testing a declaration that requires a manual intervention, please email nctstradertest@hmrc.gov.uk to
+progress the declaration for release and include the following information in your email:
 
-The NCTS Trader Test environment can handle only GB to XI movements and XI to GB movements and enforces the following rules for message recipient details.
+- Email subject must include ‘Manual Intervention’
+- Email body must include:
+  - The test scenario number, for example, ‘DSGB1’
+  - The step number, for example, ‘step 3’, and action that you are expecting
+  - The Local Reference Number (LRN)
 
-| Message type | Rule | GB to XI movements | XI to GB movements |
-| ------------ | ---- | ------------------ | ------------------ |
-| Arrival | You must enter ‘NTA‘ and the correct country code of the **actual** office of destination, which could be different from the declared office of destination. | NTA.XI | NTA.GB |
-| Departure | You must enter ‘NTA‘ and the correct country code of the office of departure. | NTA.GB | NTA.XI |
+NCTS support staff monitor the nctstradertest@hmrc.gov.uk mailbox during 9am to 5pm Mondays to Fridays and release test
+declarations regularly. When we release your movement, we will reply to your email to let you know. If you have not
+received an update about your movement request after 1 working day, please send a follow-up email to the declarant
+Test team mailbox.
 
-For the production version of the UK NCTS service, these rules will be applied to transit movements originating from or arriving in GB or XI.
+The nctstradertest@hmrc.gov.uk mailbox must be used only to request manual intervention. It should not be used for
+general enquiries.
 
-For information about entering message recipient details in messages for NCTS transit movements that involve other CTC member countries, see [NCTS technical interface specification](/guides/ctc-traders-tis/#message-recipient).
+**Note**: The automatic release period for scenarios using simplified departure procedure has been set to 45 minutes.
+This is to allow time for actions to be carried out where tests require manual intervention. In addition, the NCTS6
+system reported time is always GMT/UTC, with no modification made for daylight savings time. Therefore, during British
+Summer Time (BST) the NCTS clock will be minus 1 hour.
 
-## Manual intervention
+## NCTS6 test scenarios
 
-Trader Test simulates both simplified and normal procedures. Simplified procedure declarations are released automatically, but a normal procedure declaration requires a manual intervention for it to be processed and released.
+### Simplified procedure type
 
-When you are testing a declaration that requires a manual intervention, please send an email to [nctsp5tradertest@hmrc.gov.uk](mailto:nctsp5tradertest@hmrc.gov.uk) to progress the declaration for release and include the following information in your email:
+**Type of Movement:** Standard GB Departures
 
-- email subject must include ‘Manual Intervention’
-- email body must include:
-  - the test scenario number, for example, ‘DSGB1’
-  - the step number, for example, ‘step 3’, and action that you are expecting
-  - the Local Reference Number (LRN)
+**Test ID:** P6-DSGB-01
 
-NCTS support staff monitor the [nctsp5tradertest@hmrc.gov.uk](mailto:nctsp5tradertest@hmrc.gov.uk) mailbox during 9am to 5pm Mondays to Fridays and release test declarations regularly. When we release your movement, we will reply to your email to let you know. If you have not received an update about your movement request after 1 working day, please send a follow-up email to the declarant Test team mailbox.
+**Scenario:** Simplified Departures.
 
-The [nctsp5tradertest@hmrc.gov.uk](mailto:nctsp5tradertest@hmrc.gov.uk) mailbox must be used only to request manual intervention. It should not be used for general enquiries.
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and automatic release of a simplified declaration.
 
-**Note:** The automatic release period for scenarios using simplified departure procedure has been set to 45 minutes. This is to allow time for actions to be carried out where tests require manual intervention. In addition, the NCTS5 system reported time is always GMT/UTC, with no modification made for daylight savings time. Therefore, during British Summer Time (BST) the NCTS clock will be minus 1 hour.
+| Step | Action                                                                            | Expected Results                                                                                                                                                           |
+|------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
 
-**Important:** You must follow the requirements and instructions for each test precisely and you must provide movement-specific information if requested.
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-02
+
+**Scenario:** Cancellation request by the Holder of the Transit Procedure before release for transit.
+
+**Test Purpose:** To demonstrate the successful creation, submission, and acceptance of a simplified declaration and subsequent cancellation request.
+
+| Step | Action                                                                                                                                                                          | Expected Results                                                                       |
+|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab                                                                                               | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant |
+| 2    | Submit a cancellation IE014 within 45 minutes of IE015 submission - Use the ‘GB-XI Cancellation’ column on the ‘IE014’ tab AND Send an email to accept the cancellation request | IE009 is sent to the declarant                                                         |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-03
+
+**Scenario:** Cancellation request by the holder of the transit procedure after release for transit
+
+**Test Purpose:** To demonstrate that cancellation of a declaration cannot be requested by the declarant via IE014 Cancellation Request after it has been released.
+
+| Step | Action                                                                               | Expected Results                                                                                                                                                          |
+|------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab    | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes IE029 is automatically generated and sent to the declarant |
+| 2    | Submit a cancellation IE014 - Use the ‘GB-XI Cancellation’ column on the ‘IE014’ tab | IE056 is sent to the declarant                                                                                                                                            |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-04
+
+**Scenario:** Control by Office of Departure - Satisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a simplified declaration has been placed under control by the customs officer prior to release.
+
+| Step | Action                                                                                                                                                                | Expected Results                                                                       |
+|------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab                                                                                     | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant |
+| 2    | Immediately after IE015 submission send an email to control and to release the declaration - control must happen before the automatic release timer ends (45 minutes) | A) IE060 is sent to the declarant<br>B) IE029 is sent to the declarant                 |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-05
+
+**Scenario:** Control by Office of Departure - Unsatisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a customs officer decides to control the simplified declaration, is not satisfied with the results of their check and refuse release of the declaration.
+
+| Step | Action                                                                                                                                                             | Expected Results                                                                       |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab                                                                                  | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant |
+| 2    | Immediately after IE015 submission send an email to control and to end the declaration - control must happen before the automatic release timer ends (45 minutes). | A) IE060 is sent to the declarant<br>B) IE051 is sent to the declarant                 |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-06
+
+**Scenario:** Cancellation of a transit declaration after release for transit by OoDep
+
+**Test Purpose:** To demonstrate that a customs officer can cancel the simplified declaration after it has been released whereas the declarant cannot as per DSGB02
+
+| Step | Action                                                                            | Expected Results                                                                                                                           |
+|------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant<br>B) IE028 is generated and sent to the declarant<br>C) After 45 minutes IE029 is sent to the declarant |
+| 2    | Send an email request to cancel the declaration                                   | IE009 is sent to the declarant                                                                                                             |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-07
+
+**Scenario:** Release for transit refused due to guarantee checks failure
+
+**Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks (Simplified).
+
+| Step | Action                                                                                               | Expected Results                                                                                                                                                                |
+|------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant <br>B) IE028 is generated and sent to the declarant<br>C) IE055 is sent to the declarant<br>D) IE051 is sent to the declarant after 5 minutes |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DSGB-08
+
+**Scenario:** Simplified Departures - Amendments
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and subsequent amendment prior to release of a simplified declaration.
+
+| Step | Action                                                                                                                 | Expected Results                                                                        |
+|------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab                                      | A) IE928 is sent to the declarant <br>B) IE028 is sent to the declarant                 |
+| 2    | Submit an amendment IE013 within 45 minutes of IE015 submission - Use the ‘Simplified GB-XI’ column on the ‘IE013’ tab | A) IE004 is sent to the declarant<br>B) After 45 minutes IE029 is sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-01
+
+**Scenario:** Simplified Departures
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and automatic release of a simplified declaration.
+
+| Step | Action                                                                            | Expected Results                                                                                                                                                           |
+|------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-02
+
+**Scenario:** Cancellation request by the Holder of the Transit Procedure before release for transit
+
+**Test Purpose:** To demonstrate the successful creation, submission, and acceptance of a simplified declaration and subsequent cancellation request.
+
+| Step | Action                                                                                                                                                                          | Expected Results                                                                     |
+|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab                                                                                               | A) IE928 is sent to the declarant<br>B) IE028 is generated and sent to the declarant |
+| 2    | Submit a cancellation IE014 within 45 minutes of IE015 submission - Use the ‘XI-GB Cancellation’ column on the ‘IE014’ tab and send an email to accept the cancellation request | IE009 is sent to the declarant                                                       |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-03
+
+**Scenario:** Cancellation request by the holder of the transit procedure after release for transit
+
+**Test Purpose:** To demonstrate that cancellation of a declaration cannot be requested by the declarant via IE014 Cancellation Request after it has been released.
+
+| Step | Action                                                                               | Expected Results                                                                                                                                                          |
+|------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab    | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes IE029 is automatically generated and sent to the declarant |
+| 2    | Submit a cancellation IE014 - Use the ‘XI-GB Cancellation’ column on the ‘IE014’ tab | IE056 is sent to the declarant                                                                                                                                            |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-01
+
+**Scenario:** Control by Office of Departure - Satisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a simplified declaration has been placed under control by the customs officer prior to release.
+
+| Step | Action                                                                                                                                                                 | Expected Results                                                                       |
+|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab                                                                                      | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant |
+| 2    | Immediately after IE015 submission send an email to control and to release the declaration - control must happen before the automatic release timer ends (45 minutes). | A) IE060 is sent to the declarant<br>B) IE029 is sent to the declarant                 |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-05
+
+**Scenario:** Control by Office of Departure - Unsatisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a customs officer decides to control the simplified declaration, is not satisfied with the results of their check and refuse release of the declaration.
+
+| Step | Action                                                                                                                                                             | Expected Results                                                                       |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab                                                                                  | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant |
+| 2    | Immediately after IE015 submission send an email to control and to end the declaration - control must happen before the automatic release timer ends (45 minutes). | A) IE060 is sent to the declarant<br>B) IE051 is sent to the declarant                 |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-06
+
+**Scenario:** Cancellation of a transit declaration after release for transit by OoDep
+
+**Test Purpose:** To demonstrate that a customs officer can cancel the simplified declaration after it has been released whereas the declarant cannot as per DSXI02
+
+| Step | Action                                                                            | Expected Results                                                                                                                           |
+|------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant<br>B) IE028 is generated and sent to the declarant<br>C) After 45 minutes IE029 is sent to the declarant |
+| 2    | Send an email request to cancel the declaration                                   | IE009 is sent to the declarant                                                                                                             |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-07
+
+**Scenario:** Release for transit refused due to guarantee checks failure
+
+**Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks (Simplified).
+
+| Step | Action                                                                                               | Expected Results                                                                                                                                                                |
+|------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant <br>B) IE028 is generated and sent to the declarant<br>C) IE055 is sent to the declarant<br>D) IE051 is sent to the declarant after 5 minutes |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DSXI-08
+
+**Scenario:** Simplified Departures - Amendments
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and subsequent amendment prior to release of a simplified declaration.
+
+| Step | Action                                                                                                                 | Expected Results                                                                        |
+|------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab                                      | A) IE928 is sent to the declarant <br>B) IE028 is sent to the declarant                 |
+| 2    | Submit an amendment IE013 within 45 minutes of IE015 submission - Use the ‘Simplified XI-GB’ column on the ‘IE013’ tab | A) IE004 is sent to the declarant<br>B) After 45 minutes IE029 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PSGB-01
+
+**Scenario:** Prelodged Declaration
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and presentation of a pre-lodged simplified declaration
+
+| Step | Action                                                                                                                  | Expected Results                                                                      |
+|------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI Pre-lodged’ column on the ‘IE015’ tab                            | IE928 is sent to the declarant                                                        |
+| 2    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Simplified GB-XI’ column on the ‘IE170’ tab | A)  IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PSGB-02
+
+**Scenario:** Transit presentation notification not valid/rejected
+
+**Test Purpose:** To demonstrate that a pre-lodged simplified declaration will be automatically rejected if no valid presentation notification is submitted within the presentation time limit (45 minutes in Trader Test).
+
+| Step | Action                                                                                                                                                                         | Expected Results                                                                                                                                                          |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI Pre-lodged’ column on the ‘IE015’ tab                                                                                   | A) IE928 is sent to the declarant<br>B) 'Await Presentation Notification Timer' starts for presentation of the goods.                                                     |
+| 2    | Submit an invalid declaration IE170 by excluding the 'Authorisation number' field within 45 minutes of IE015 submission - Use the ‘Simplified GB-XI’ column on the ‘IE170’ tab | A) IE056 is generated and sent to the declarant<br>B)  'Await Presentation Notification Timer' expires for presentation of the goods<br>C) IE056 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PSGB-03
+
+**Scenario:** Corrections (Amendments)
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and subsequent amendment prior to presentation notification of a pre-lodged simplified declaration.
+
+| Step | Action                                                                                                                            | Expected Results                                                                      |
+|------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI Pre-lodged’ column on the ‘IE015’ tab                                      | IE928 is sent to the declarant                                                        |
+| 2    | Submit an amendment IE013 within 45 minutes of IE015 submission - Use the ‘Pre-lodged Simplified GB-XI’ column on the ‘IE013’ tab | IE004 is sent to the declarant                                                        |
+| 3    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Simplified GB-XI’ column on the ‘IE170’ tab           | A)  IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PSGB-04
+
+**Scenario:** Cancellation of a Prelodged Declaration (Simplified)
+
+**Test Purpose:** To demonstrate that a declarant can cancel the pre-lodged simplified declaration within the presentation time limit (45 minutes in Trader Test)
+
+| Step | Action                                                                                                                                | Expected Results                |
+|------|---------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified GB-XI Pre-lodged’ column on the ‘IE015’ tab                                          | IE928 is sent to the declarant  |
+| 2    | Submit a cancellation IE014 within 45 minutes of IE015 submission - Use the ‘GB-XI Cancellation Pre-lodged’ column on the ‘IE014‘ tab | IE009 is sent to the declarant. |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PSXI-01
+
+**Scenario:** Prelodged Declaration
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and presentation of a pre-lodged simplified declaration.
+
+| Step | Action                                                                                                                  | Expected Results                                                                      |
+|------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB Pre-lodged’ column on the ‘IE015’ tab                            | IE928 is sent to the declarant                                                        |
+| 2    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Simplified XI-GB’ column on the ‘IE170’ tab | A)  IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PSXI-02
+
+**Scenario:** Transit presentation not valid/rejected
+
+**Test Purpose:** To demonstrate that a pre-lodged simplified declaration will be automatically rejected if no valid presentation notification is submitted within the presentation time limit (45 minutes in Trader Test).
+
+| Step | Action                                                                                                                                                                          | Expected Results                                                                                                                                                        |
+|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB Pre-lodged’ column on the ‘IE015’ tab                                                                                    | A) IE928 is sent to the declarant<br>B) Await Presentation Notification Timer starts for presentation of the goods                                                      |
+| 2    | Submit an invalid declaration IE170 by excluding the 'Authorisation number' field within  45 minutes of IE015 submission - Use the ‘Simplified XI-GB’ column on the ‘IE170’ tab | A) IE056 is generated and sent to the declarant<br>B)  Await Presentation Notification Timer expires for presentation of the goods<br>C) IE056 is sent to the declarant |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PSXI-03
+
+**Scenario:** PSXI03: Corrections (Amendments)
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and subsequent amendment prior to presentation notification of a pre-lodged simplified declaration.
+
+| Step | Action                                                                                                                            | Expected Results                                                                      |
+|------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB Pre-lodged’ column on the ‘IE015’ tab                                      | IE928 is sent to the declarant                                                        |
+| 2    | Submit an amendment IE013 within 45 minutes of IE015 submission - Use the ‘Pre-lodged Simplified XI-GB’ column on the ‘IE013’ tab | IE004 is sent to the declarant                                                        |
+| 3    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Simplified XI-GB’ column on the ‘IE170’ tab           | A)  IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PSXI-04
+
+**Scenario:** Cancellation of a Prelodged Declaration (Simplified)
+
+**Test Purpose:** To demonstrate that a declarant can cancel the pre-lodged simplified declaration within the presentation time limit (45 minutes in Trader Test)
+
+| Step | Action                                                                                                                               | Expected Results                |
+|------|--------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Simplified XI-GB Pre-lodged’ column on the ‘IE015’ tab                                         | IE928 is sent to the declarant  |
+| 2    | Submit a cancellation IE014 within 45 minutes of IE015 submission - Use the ‘XI-GB Cancellation Pre-lodged’ column on the ‘IE014 tab | IE009 is sent to the declarant. |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ASGB-01
+
+**Scenario:** Simplified Arrival
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance of Simplified Arrival and the release and write off of the declaration.
+
+| Step | Action                                                                                              | Expected Results                                                                                                                                                           |
+|------|-----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified XI-GB’ column on the ‘IE015’ tab                   | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE007’ tab | IE043 is sent to the declarant                                                                                                                                             |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE044’ tab.   | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ASGB-02
+
+**Scenario:** Unloading Remarks Rejected/Accepted
+
+**Test Purpose:** To demonstrate the rejection, amendment and subsequent acceptance of Unloading Remarks.
+
+| Step | Action                                                                                                                                     | Expected Results                                                                                                                                                           |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified XI-GB’ column on the ‘IE015’ tab                                                          | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE007’ tab                                        | IE043 is sent to the declarant                                                                                                                                             |
+| 3    | Submit an invalid Unloading Remarks IE044 without "State of seals" HTML tag - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE044’ tab | IE057 is sent to the declarant                                                                                                                                             |
+| 4    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE044’ tab.                                          | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ASGB-03
+
+**Scenario:** Major discrepancies resolved
+
+**Test Purpose:** To demonstrate the flow of messages where Major Discrepancies have been found, satisfactorily resolved and the declaration has been released and written off.
+
+| Step | Action                                                                                                                                                                                 | Expected Results                                                                                                                                                                                                                                                                                                                           |
+|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified XI-GB’ column on the ‘IE015’ tab                                                                                                      | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant                                                                                                                                                                 |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE007’ tab                                                                                    | IE043 is sent to the declarant                                                                                                                                                                                                                                                                                                             |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB (Major Discrepancies)’ column on the ‘IE044’ tab. Send an email to request major discrepancies and to resolve it | A) IE025 is sent to the declarant (Destination) indicating that the goods have not been released.<br>B) IE019 is sent to the declarant (Departure)<br>C) After discrepancies has been resolved, IE025 is sent to the declarant (Destination) indicating that the goods have been released<br>D) IE045 is sent to the declarant (Departure) |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ASGB-04
+
+**Scenario:** Major discrepancies confirmed
+
+**Test Purpose:** To demonstrate the flow of messages where Major Discrepancies have been found, confirmed and the declarant at departure is notified of recovery action.
+
+| Step | Action                                                                                                                                                                                 | Expected Results                                                                                                                                                                                    |
+|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified XI-GB’ column on the ‘IE015’ tab                                                                                                      | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant                          |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE007’ tab                                                                                    | IE043 is sent to the declarant                                                                                                                                                                      |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB (Major Discrepancies)’ column on the ‘IE044’ tab. Send an email to request major discrepancies and to confirm it | A) IE025 is sent to the declarant (Destination) indicating that the goods have not been released.<br>B) IE019 is sent to the declarant (Departure)<br>C) IE035 is sent to the declarant (Departure) |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ASGB-05
+
+**Scenario:** Non Conformance
+
+**Test Purpose:** To demonstrate a declarant can submit the difference of the unloaded goods in Unloading Remarks. The test is designed to highlight the difference in 'Gross mass' at 'Consignment', 'House consignment' and at 'Consignment item' level. It is also highlighting the differences in 'Description of goods' and 'Commodity code'. Officer submits control result "A5".
+
+| Step | Action                                                                                                                                                        | Expected Results                                                                                                                                                           |
+|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified XI-GB’ column on the ‘IE015’ tab                                                                             | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE007’ tab                                                           | IE043 is sent to the declarant                                                                                                                                             |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB (Major Discrepancies)’ column on the ‘IE044’ tab. Send an email to release the movement | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ASGB-06
+
+**Scenario:** ASGB06: Multiple House Consignment Simplified Arrival (No Discrepancies)
+
+**Test Purpose:** To demonstrate the successful submission of IE007 and IE044 to arrive and release a movement via the simplified authorised consignee simplified arrival process
+
+| Step | Action                                                                                                              | Expected Results                                                                                                                                                           |
+|------|---------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit IE015 with multiple house consignments use data from 'simplified XI-GB' column in IE015 tab                  | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 using the simplified arrival XI-GB column in the IE007 tab                     | A) IE043 is sent to the declarant                                                                                                                                          |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB (No Discrepancies)’ column on the ‘IE044' tab | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ASXI-01
+
+**Scenario:** Simplified Arrival
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance of Simplified Arrival and the release and write off of the declaration.
+
+| Step | Action                                                                                              | Expected Results                                                                                                                                                           |
+|------|-----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015  - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                  | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE007’ tab | IE043 is sent to the declarant                                                                                                                                             |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE044’ tab.   | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ASXI-02
+
+**Scenario:** Unloading Remarks Rejected/Accepted
+
+**Test Purpose:** To demonstrate the acceptance and rejection of Unloading Remarks.
+
+| Step | Action                                                                                                                                     | Expected Results                                                                                                                                                           |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                                                          | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE007’ tab                                        | IE043 is sent to the declarant                                                                                                                                             |
+| 3    | Submit an invalid Unloading Remarks IE044 without "State of seals" HTML tag - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE044’ tab | IE057 is sent to the declarant                                                                                                                                             |
+| 4    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE044’ tab.                                          | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ASXI-03
+
+**Scenario:** Major discrepancies resolved
+
+**Test Purpose:** To demonstrate the flow of messages when the Major Discrepancies have been found and resolved it satisfactorily before the declaration has been released and written off.
+
+| Step | Action                                                                                                                                                                                 | Expected Results                                                                                                                                                                                                                                                                                                                           |
+|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                                                                                                      | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant                                                                                                                                                                 |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE007’ tab                                                                                    | IE043 is sent to the declarant                                                                                                                                                                                                                                                                                                             |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI (Major Discrepancies)’ column on the ‘IE044’ tab. Send an email to request major discrepancies and to resolve it | A) IE025 is sent to the declarant (Destination) indicating that the goods have not been released.<br>B) IE019 is sent to the declarant (Departure)<br>C) After discrepancies has been resolved, IE025 is sent to the declarant (Destination) indicating that the goods have been released<br>D) IE045 is sent to the declarant (Departure) |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ASXI-04
+
+**Scenario:** Major discrepancies confirmed
+
+**Test Purpose:** To demonstrate the flow of messages when the Major Discrepancies have been found and confirmed it before the declaration has been sent for recovery.
+
+| Step | Action                                                                                                                                                                                 | Expected Results                                                                                                                                                                                    |
+|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                                                                                                      | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant                          |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE007’ tab                                                                                    | IE043 is sent to the declarant                                                                                                                                                                      |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI (Major Discrepancies)’ column on the ‘IE044’ tab. Send an email to request major discrepancies and to confirm it | A) IE025 is sent to the declarant (Destination) indicating that the goods have not been released.<br>B) IE019 is sent to the declarant (Departure)<br>C) IE035 is sent to the declarant (Departure) |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ASXI-05
+
+**Scenario:** Non Conformance
+
+**Test Purpose:** To demonstrate a declarant can submit the difference of the unloaded goods in Unloading Remarks. The test is designed to highlight the difference in 'Gross mass' at 'Consignment', 'House consignment' and at 'Consignment item' level. It is also highlighting the differences in 'Description of goods' and 'Commodity code'. Officer submits control result "A5".
+
+| Step | Action                                                                                                                                                        | Expected Results                                                                                                                                                           |
+|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                                                                             | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE007’ tab                                                           | IE043 is sent to the declarant                                                                                                                                             |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI (Major Discrepancies)’ column on the ‘IE044’ tab. Send an email to release the movement | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** XI  Arrivals
+
+**Test ID:** P6-ASXI-06
+
+**Scenario:** Multiple House Consignment Simplified Arrival (No Discrepancies)
+
+**Test Purpose:** To demonstrate the successful submission of IE007 and IE044 to arrive and release a movement via the simplified authorised consignee simplified arrival process
+
+| Step | Action                                                                                             | Expected Results                                                                                                                                                           |
+|------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit IE015 with multiple house consignments use data from 'Simplified GB-XI' column in IE015 tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 using the simplified arrival GB-XI column in the IE007 tab    | A) IE043 is sent to the declarant                                                                                                                                          |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE044' tab   | A) IE025 is sent to the declarant (Destination)<br>B) IE045 is sent to the declarant (Departure)                                                                           |
+
+**Type of Movement:** Movement of Goods without Container (Container Indicator = 0)
+
+**Test ID:** P6-WCGB-01
+
+**Scenario:** Departure and arrival / unloading with sealed transport but non-containerised goods
+
+**Test Purpose:** To demonstrate the expected format of a declaration for non-containerised goods in a sealed transport
+
+| Step | Action                                                                                                               | Expected Results                                                                                                                                                                        |
+|------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit IE015 with multiple house consignments use data from 'simplified GB-XI Non Containerised' column in IE015 tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant              |
+| 2    | Submit an arrival notification IE007 using the simplified arrival GB-XI column in the IE007 tab                      | A) IE043 is sent to the declarant                                                                                                                                                       |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE044' tab                     | A) IE025 is sent to the Trader at Destination releasing the movement<br>B) IE045 sent to Holder of the Procedure at Departure writing off the movement and ending the transit procedure |
+
+**Type of Movement:** Movement of Goods without Container (Container Indicator = 0)
+
+**Test ID:** P6-WCXI-01
+
+**Scenario:** Departure and arrival / unloading with sealed transport but non-containerised goods
+
+**Test Purpose:** To demonstrate the expected format of a declaration for non-containerised goods in a sealed transport
+
+| Step | Action                                                                                                                            | Expected Results                                                                                                                                                                        |
+|------|-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit IE015 with multiple house consignments use data from 'simplified XI-GB Non Containerised' column in IE015 tab              | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant              |
+| 2    | Submit an arrival notification IE007 using the simplified arrival XI-GB column in the IE007 tab                                   | A) IE043 is sent to the declarant                                                                                                                                                       |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival XI-GB’ column on the ‘IE044' tab                                  | A) IE025 is sent to the Trader at Destination releasing the movement<br>B) IE045 sent to Holder of the Procedure at Departure writing off the movement and ending the transit procedure |
+| 1    | Submit IE015 with multiple house consignments use data from 'simplified GB-XI Non Containerised' column in IE015 (final only) tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant              |
+| 2    | Submit an arrival notification IE007 using the simplified arrival GB-XI column in the IE007 tab                                   | A) IE043 is sent to the declarant                                                                                                                                                       |
+| 3    | Submit an Unloading Remarks IE044 - Use the ‘Simplified Arrival GB-XI’ column on the ‘IE044 (Final Only)' tab                     | A) IE025 is sent to the Trader at Destination releasing the movement<br>B) IE045 sent to Holder of the Procedure at Departure writing off the movement and ending the transit procedure |
+
+### Normal procedure type
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-01
+
+**Scenario:** Normal Departures
+
+**Test Purpose:** To demonstrate the successful creation, submission and acceptance of a normal declaration.
+
+| Step | Action                                                                        | Expected Results                                                                     |
+|------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                       |
+| 2    | Send an email to accept and release the declaration                           | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-02
+
+**Scenario:** Cancellation request by the Holder of the Transit Procedure before release for transit
+
+**Test Purpose:** To demonstrate the successful creation, submission, and acceptance of a normal declaration and subsequent cancellation request.
+
+| Step | Action                                                                               | Expected Results                             |
+|------|--------------------------------------------------------------------------------------|----------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab        | IE928 is sent to the declarant               |
+| 2    | Send an email to accept the declaration                                              | IE028 is generated and sent to the declarant |
+| 3    | Submit a cancellation IE014 - Use the ‘GB-XI Cancellation’ column on the ‘IE014’ tab |                                              |
+| 4    | Send an email to accept the cancellation request                                     | IE009 is sent to the declarant               |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-03
+
+**Scenario:** Cancellation request by the Holder of the Transit Procedure after release for transit
+
+**Test Purpose:** To demonstrate that cancellation of a declaration cannot be requested by the declarant via IE014 Cancellation Request after it has been released.
+
+| Step | Action                                                                               | Expected Results                                                                     |
+|------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab        | IE928 is sent to the declarant                                                       |
+| 2    | Send an email to accept and release the declaration                                  | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+| 3    | Submit a cancellation IE014 - Use the ‘GB-XI Cancellation’ column on the ‘IE014’ tab | IE056 is sent to the declarant                                                       |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-04
+
+**Scenario:** Control by Office of Departure - Satisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a normal declaration has been placed under control by the customs officer prior to release.
+
+| Step | Action                                                                        | Expected Results                                                                                                                                 |
+|------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                                   |
+| 2    | Send an email to accept, control and release the declaration                  | A) IE028 is generated and sent to the declarant<br>B) IE060 is sent to the declarant<br>C) IE029 is sent to the declarant - declaration released |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-05
+
+**Scenario:** Control by Office of Departure - Unsatisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a customs officer decides to control the normal declaration, is not satisfied with the results of their check and refuse release of the declaration.
+
+| Step | Action                                                                        | Expected Results                                                                                                          |
+|------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                            |
+| 2    | Send an email to accept, control and end the declaration                      | A) IE028 is generated and sent to the declarant<br>B) IE060 is sent to the declarant<br>C) IE051 is sent to the declarant |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-06
+
+**Scenario:** Cancellation of a transit declaration after release for transit by OoDep
+
+**Test Purpose:** To demonstrate that a customs officer can cancel the declaration declaration after it has been released whereas the declarant cannot as per DNGB2
+
+| Step | Action                                                                        | Expected Results                                                                                                          |
+|------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                            |
+| 2    | Send an email to accept, release and cancel the declaration                   | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant<br>C) IE009 is sent to the declarant |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-07
+
+**Scenario:** Release for transit refused due to guarantee checks failure
+
+**Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks
+
+| Step | Action                                                                                           | Expected Results                                                                                                                         |
+|------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                           |
+| 2    | Send an email to accept and release the declaration.                                             | A) IE028 is generated and sent to the declarant<br>B) IE055 is sent to the declarant.<br>C) IE051 is sent to the declarant after 5 mins. |
+
+**Type of Movement:** Standard GB Departures
+
+**Test ID:** P6-DNGB-08
+
+**Scenario:** Normal Departures - Amendments
+
+**Test Purpose:** To demonstrate the successful creation, submission, and amendment of a normal declaration.
+
+| Step | Action                                                                        | Expected Results               |
+|------|-------------------------------------------------------------------------------|--------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant |
+| 2    | Send an email to accept the declaration                                       | IE028 is sent to the declarant |
+| 3    | Submit an amendment IE013 - Use the ‘Normal GB-XI’ column on the ‘IE013’ tab  | IE004 is sent to the declarant |
+| 4    | Send an email to release the declaration                                      | IE029 is sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-01
+
+**Scenario:** Normal Departures
+
+**Test Purpose:** To demonstrate the successful creation, submission and acceptance of a normal declaration.
+
+| Step | Action                                                                        | Expected Results                                                                     |
+|------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                       |
+| 2    | Send an email to accept and release the declaration                           | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-02
+
+**Scenario:** Cancellation request by the Holder of the Transit Procedure before release for transit
+
+**Test Purpose:** To demonstrate the successful creation, submission, and acceptance of a normal declaration and subsequent cancellation request.
+
+| Step | Action                                                                               | Expected Results                             |
+|------|--------------------------------------------------------------------------------------|----------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab        | IE928 is sent to the declarant               |
+| 2    | Send an email to accept the declaration                                              | IE028 is generated and sent to the declarant |
+| 3    | Submit a cancellation IE014 - Use the ‘XI-GB Cancellation’ column on the ‘IE014’ tab |                                              |
+| 4    | Send an email to accept the cancellation request                                     | IE009 is sent to the declarant               |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-03
+
+**Scenario:** Cancellation request by the Holder of the Transit Procedure after release for transit
+
+**Test Purpose:** To demonstrate that cancellation of a declaration cannot be requested by the declarant via IE014 Cancellation Request after it has been released.
+
+| Step | Action                                                                               | Expected Results                                                                     |
+|------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab        | IE928 is sent to the declarant                                                       |
+| 2    | Send an email to accept and release the declaration                                  | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+| 3    | Submit a cancellation IE014 - Use the ‘XI-GB Cancellation’ column on the ‘IE014’ tab | IE056 is sent to the declarant                                                       |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-04
+
+**Scenario:** Control by Office of Departure - Satisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a normal declaration has been placed under control by the customs officer prior to release.
+
+| Step | Action                                                                        | Expected Results                                                                                                                                 |
+|------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                                   |
+| 2    | Send an email to accept, control and release the declaration                  | A) IE028 is generated and sent to the declarant<br>B) IE060 is sent to the declarant<br>C) IE029 is sent to the declarant - declaration released |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-05
+
+**Scenario:** Control by Office of Departure - Unsatisfactory
+
+**Test Purpose:** To demonstrate the message exchange where a customs officer decides to control the normal declaration, is not satisfied with the results of their check and refuse release of the declaration.
+
+| Step | Action                                                                        | Expected Results                                                                                                          |
+|------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                            |
+| 2    | Send an email to accept, control and reject the declaration                   | A) IE028 is generated and sent to the declarant<br>B) IE060 is sent to the declarant<br>C) IE051 is sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-06
+
+**Scenario:** Normal Departures -  Transports Internationaux Routiers (TIR)
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and release of a normal TIR declaration.
+
+| Step | Action                                                                            | Expected Results                                                                     |
+|------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-XI TIR’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                       |
+| 2    | Send an email to accept and release the declaration                               | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-07
+
+**Scenario:** Cancellation of a transit declaration after release for transit by OoDep
+
+**Test Purpose:** To demonstrate that a customs officer can cancel the departure declaration after it has been released whereas the declarant cannot as per DNXI02
+
+| Step | Action                                                                        | Expected Results                                                                                                          |
+|------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                            |
+| 2    | Send an email to accept, release and cancel the declaration                   | A) IE028 is generated and sent to the declarant<br>B) IE029 is sent to the declarant<br>C) IE009 is sent to the declarant |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-08
+
+**Scenario:** Release for transit refused due to guarantee checks failure
+
+**Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks (Normal).
+
+| Step | Action                                                                                           | Expected Results                                                                                                                         |
+|------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                           |
+| 2    | Send an email to accept and release the declaration                                              | A) IE028 is generated and sent to the declarant<br>B) IE055 is sent to the declarant.<br>C) IE051 is sent to the declarant after 5 mins. |
+
+**Type of Movement:** Standard XI Departures
+
+**Test ID:** P6-DNXI-09
+
+**Scenario:** Normal Departures - Amendments
+
+**Test Purpose:** To demonstrate the successful creation, submission, and amendment of a normal declaration.
+
+| Step | Action                                                                        | Expected Results               |
+|------|-------------------------------------------------------------------------------|--------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant |
+| 2    | Send an email to accept the declaration                                       | IE028 is sent to the declarant |
+| 3    | Submit an amendment IE013 - Use the ‘Normal XI-GB’ column on the ‘IE013’ tab  | IE004 is sent to the declarant |
+| 4    | Send an email to release the declaration                                      | IE029 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PNGB-01
+
+**Scenario:** Prelodged Declaration
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and presentation of a pre-lodged normal declaration.
+
+| Step | Action                                                                                                              | Expected Results               |
+|------|---------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI Pre-lodged’ column on the ‘IE015’ tab                            | IE928 is sent to the declarant |
+| 2    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Normal GB-XI’ column on the ‘IE170’ tab | IE028 sent to the declarant    |
+| 3    | Send an email to release the declaration                                                                            | IE029 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PNGB-02
+
+**Scenario:** Transit presentation not valid/rejected
+
+**Test Purpose:** To demonstrate that a pre-lodged normal declaration will be automatically rejected if no valid presentation notification is submitted within the presentation time limit (45 minutes in Trader Test).
+
+| Step | Action                                                                                                                                    | Expected Results                                                                                                                                                            |
+|------|-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI Pre-lodged’ column on the ‘IE015’ tab                                                  | A) IE928 is sent to the declarant<br>B) 'Await Presentation Notification Timer' starts for presentation of the goods.                                                       |
+| 2    | Submit a declaration IE170 with invalid UNLocode within 45 minutes of IE015 submission - Use the ‘Normal GB-XI’ column on the ‘IE170’ tab | A) IE056 is generated and sent to the declarant.<br>B)  'Await Presentation Notification Timer' expires for presentation of the goods.<br>C) IE056 is sent to the declarant |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PNGB-03
+
+**Scenario:** Corrections (Amendments)
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and subsequent amendment prior to presentation notification of a pre-lodged normal declaration.
+
+| Step | Action                                                                                                                        | Expected Results                              |
+|------|-------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI Pre-lodged’ column on the ‘IE015’ tab                                      | IE928 is sent to the declarant                |
+| 2    | Submit an amendment IE013 within 45 minutes of IE015 submission - Use the ‘Pre-lodged Normal GB-XI’ column on the ‘IE013’ tab | IE004 is generated and sent to the declarant. |
+| 3    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Normal GB-XI’ column on the ‘IE170’ tab           | IE028 is generated and sent to the declarant. |
+| 4    | Send an email to release the declaration                                                                                      | IE029 is sent to the declarant                |
+
+**Type of Movement:** Pre-lodged GB Departures
+
+**Test ID:** P6-PNGB-04
+
+**Scenario:** Cancellation of a Prelodged Declaration (Normal)
+
+**Test Purpose:** To demonstrate that a declarant can cancel the pre-lodged normal declaration within the presentation time limit (45 minutes in Trader Test)
+
+| Step | Action                                                                                                                               | Expected Results                |
+|------|--------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI Pre-lodged’ column on the ‘IE015’ tab                                             | IE928 is sent to the declarant  |
+| 2    | Submit a cancellation IE014 within 45 mins of the IE015 submission- Use the ‘GB-XI Cancellation Pre-lodged’ column on the ‘IE014 tab | IE009 is sent to the declarant. |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PNXI-01
+
+**Scenario:** Prelodged Declaration
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and presentation of a pre-lodged normal declaration.
+
+| Step | Action                                                                                                              | Expected Results               |
+|------|---------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB Pre-lodged’ column on the ‘IE015’ tab                            | IE928 is sent to the declarant |
+| 2    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Normal XI-GB’ column on the ‘IE170’ tab | IE028 sent to the declarant    |
+| 3    | Send an email to release the declaration                                                                            | IE029 is sent to the declarant |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PNXI-02
+
+**Scenario:** Transit presentation not valid/rejected
+
+**Test Purpose:** To demonstrate that a pre-lodged normal declaration will be automatically rejected if no valid presentation notification is submitted within the presentation time limit (45 minutes in Trader Test).
+
+| Step | Action                                                                                                                            | Expected Results                                                                                                                                                          |
+|------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal GB-XI Pre-lodged’ column on the ‘IE015’ tab                                          | A) IE928 is sent to the declarant<br>B) Await Presentation Notification Timer starts for presentation of the goods.                                                       |
+| 2    | Submit a declaration IE170 with invalid  within 45 minutes of IE015 submission - Use the ‘Normal XI-GB’ column on the ‘IE170’ tab | A) IE056 is generated and sent to the declarant.<br>B)  Await Presentation Notification Timer expires for presentation of the goods.<br>C) IE056 is sent to the declarant |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PNXI-03
+
+**Scenario:** Corrections (Amendments)
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance and presentation of a pre-lodged normal declaration.
+
+| Step | Action                                                                                                                        | Expected Results                                 |
+|------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| 1    | A declarant submits a declaration IE015 - Use the ‘Normal XI-GB Pre-lodged’ column on the ‘IE015’ tab                         | A) IE928 is sent to the declarant                |
+| 2    | Submit an amendment IE013 within 45 minutes of IE015 submission - Use the ‘Pre-lodged Normal XI-GB’ column on the ‘IE013’ tab | A) IE004 is generated and sent to the declarant. |
+| 3    | Submit a declaration IE170 within 45 minutes of IE015 submission - Use the ‘Normal XI-GB’ column on the ‘IE170’ tab           | IE028 is generated and sent to the declarant.    |
+| 4    | Send an email to release the declaration                                                                                      | IE029 is sent to the declarant                   |
+
+**Type of Movement:** Prelodged XI Departures
+
+**Test ID:** P6-PNXI-04
+
+**Scenario:** Cancellation of a Prelodged Declaration (Normal)
+
+**Test Purpose:** To demonstrate that a declarant can cancel the pre-lodged normal declaration within the presentation time limit (45 minutes in Trader Test)
+
+| Step | Action                                                                                                                               | Expected Results                   |
+|------|--------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ‘Normal XI-GB Pre-lodged’ column on the ‘IE015’ tab                                             | A) IE928 is sent to the declarant  |
+| 2    | Submit a cancellation IE014 within 45 minutes of IE015 submission - Use the ‘XI-GB Cancellation Pre-lodged’ column on the ‘IE014 tab | A) IE009 is sent to the declarant. |
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-ANGB-01
+
+**Scenario:** Multiple House Consignment Normal Arrival (No Discrepancies)
+
+**Test Purpose:** To demonstrate that an IE015 may be arrived via the normal procedure in NCTS 6.
+
+| Step | Action                                                                                             | Expected Results                                                                                                                                                           |
+|------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit IE015 with multiple house consignments use data from 'simplified XI-GB' column in IE015 tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Send an Email request to ask for the movenment to be arrived                                       | A) IE045 sent to the declarant (departure)                                                                                                                                 |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ANXI-01
+
+**Scenario:** Normal Arrival
+
+**Test Purpose:** To demonstrate the successful creation, submission, acceptance of Normal Arrival and the release of the declaration.
+
+| Step | Action                                                                                                                                                                                   | Expected Results                                                                                                                                                           |
+|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                                                                                                        | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Submit an arrival notification IE007 - Use the ‘Normal Arrival GB-XI’ column on the ‘IE007’ tab and send an email request to accept the arrival notification and to release the movement | A) IE025 is sent to the declarant<br>B) IE045 is sent to the declarant                                                                                                     |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-ANXI-02
+
+**Scenario:** Multiple House Consignment Normal Arrival (No Discrepancies)
+
+**Test Purpose:** To demonstrate that an IE015 may be arrived via the normal procedure in NCTS 6.
+
+| Step | Action                                                                                             | Expected Results                                                                                                                                                           |
+|------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit IE015 with multiple house consignments use data from 'Simplified GB-XI' column in IE015 tab | A) IE928 is sent to the declarant  <br>B) IE028 is generated and sent to the declarant <br>C) After 45 minutes  IE029 is automatically generated and sent to the declarant |
+| 2    | Send an Email request to ask for the movenment to be arrived                                       | A) IE045 sent to the declarant (departure)                                                                                                                                 |
+
+### Simplified and normal procedure type
+
+**Type of Movement:** GB Arrivals
+
+**Test ID:** P6-AGB-01
+
+**Scenario:** Rejection of the Arrival Notification
+
+**Test Purpose:** To demonstrate the rejection of the Arrival Notification for a none released departure.
+
+| Step | Action                                                                                                                                          | Expected Results                                                                                                                           |
+|------|-------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified XI-GB’ column on the ‘IE015’ tab                                                               | A) IE928 is sent to the declarant<br>B) IE028 is generated and sent to the declarant<br>C) After 45 minutes IE029 is sent to the declarant |
+| 2    | Send an email request to cancel the declaration                                                                                                 | IE009 is sent to the declarant                                                                                                             |
+| 3    | Submit an arrival notification IE007 - Use either the ‘Normal Arrival XI-GB’ column or the ’Simplified Arrival XI-GB’ column on the ‘IE007’ tab | IE057 is sent to the declarant                                                                                                             |
+
+**Type of Movement:** XI Arrivals
+
+**Test ID:** P6-AXI-01
+
+**Scenario:** Rejection of the Arrival Notification
+
+**Test Purpose:** To demonstrate the rejection of the Arrival Notification for an invalid departure declaration.
+
+| Step | Action                                                                                                                                          | Expected Results                                                                                                                           |
+|------|-------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 - Use the ’Simplified GB-XI’ column on the ‘IE015’ tab                                                               | A) IE928 is sent to the declarant<br>B) IE028 is generated and sent to the declarant<br>C) After 45 minutes IE029 is sent to the declarant |
+| 2    | Send an email request to cancel the declaration                                                                                                 | IE009 is sent to the declarant                                                                                                             |
+| 3    | Submit an arrival notification IE007 - Use either the ‘Normal Arrival GB-XI’ column or the ’Simplified Arrival GB-XI’ column on the ‘IE007’ tab | IE057 is sent to the declarant                                                                                                             |
+
+
+## Example XML response messages
+
+To facilitate your test planning and testing in NCTS6 Trader Test, we have created a selection of example XML
+response messages and put them in a zip file TODO: Update link
+
+**Note**: These example XML messages are intended to serve only as supplementary information and they are not connected
+in any way to the example XML messages in the NCTS6 Trader Test pack. Please refer to the [NCTS technical interface
+specification](https://developer.service.hmrc.gov.uk/guides/ctc-traders-tis/) for accurate and comprehensive
+information about how the fields in NCTS6 message types should be utilised.
+
+
