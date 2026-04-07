@@ -23,8 +23,7 @@ perform the live manual steps of the process. This simulates and tests a full re
 for you.
 
 You can use NCTS Trader Test to test small messages (up to 5MB in size) and large messages (up to 8MB in size) with 
-standard departures process flows, pre-lodged departures process flows, and arrivals process flows (as defined in 
-this document).
+standard departures process, pre-lodged departures process, and arrivals process flows.
 
 
 ## Testing prerequisites
@@ -33,7 +32,11 @@ API phase 6 service guide.](https://developer.service.hmrc.gov.uk/guides/ctc-tra
 
 
 ## Test environments
-**Availability window**: 7am to 7pm, Monday to Friday (UK time, either GMT or BST)
 
+### Availability Window
 
-You must use our sandbox environment and Trader Test to test the compatibility of your software with CTC Traders API v3.0.
+The sandbox environment/Trader Test service will be available **24 hours, 7 days a week until 1 June** to support testing.
+
+From 1 June onwards, availability will revert to **7am–7pm, Monday to Friday (UK time, GMT/BST)**.
+
+You must use our sandbox environment and Trader Test to test the compatibility of your software with CTC Traders API.
