@@ -17,18 +17,9 @@ compliance with the requirements of the Northern Ireland Protocol means that rul
 the same way as for EU member states.
 
 
-[CTC Traders API v3.0](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders/3.0/oas/page)
+[CTC Traders API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders/)
 integrates with both the Great Britain and Northern Ireland versions of the NCTS test system. These operate identically
 to the Great Britain and Northern Ireland live versions of the NCTS system.
-
-### Completing transit declarations
-
-For comprehensive information about how to complete a ‘Declaration Data’ E_DEC_DAT (IE015) message for NCTS5,
-see [CTC Traders API phase 5 service guide](https://developer.service.hmrc.gov.uk/guides/ctc-traders-phase5-service-guide/documentation/complete-transit-declaration.html).
-
-For information about entering message recipient details in messages for NCTS6 transit movements that involve other
-CTC member countries,
-see [NCTS technical interface specification](https://developer.service.hmrc.gov.uk/guides/ctc-traders-tis/).
 
 ### Manual intervention
 
@@ -36,21 +27,21 @@ Trader Test simulates both simplified and normal procedures. Simplified procedur
 automatically, but a normal procedure declaration requires a manual intervention for it to be processed and released.
 
 
-When you are testing a declaration that requires a manual intervention, please email nctstradertest@hmrc.gov.uk to
+When you are testing a declaration that requires a manual intervention, please email [nctstradertest@hmrc.gov.uk](mailto:nctstradertest@hmrc.gov.uk) to
 progress the declaration for release and include the following information in your email:
 
 - Email subject must include ‘Manual Intervention’
 - Email body must include:
-  - The test scenario number, for example, ‘DSGB1’
+  - The test scenario number, for example, ‘P6-DSGB-01’
   - The step number, for example, ‘step 3’, and action that you are expecting
   - The Local Reference Number (LRN)
 
-NCTS support staff monitor the nctstradertest@hmrc.gov.uk mailbox during 9am to 5pm Mondays to Fridays and release test
+NCTS support staff monitor the [nctstradertest@hmrc.gov.uk](mailto:nctstradertest@hmrc.gov.uk) mailbox during **9am to 5pm** Mondays to Fridays and release test
 declarations regularly. When we release your movement, we will reply to your email to let you know. If you have not
 received an update about your movement request after 1 working day, please send a follow-up email to the declarant
 Test team mailbox.
 
-The nctstradertest@hmrc.gov.uk mailbox must be used only to request manual intervention. It should not be used for
+The [nctstradertest@hmrc.gov.uk](mailto:nctstradertest@hmrc.gov.uk) mailbox must be used only to request manual intervention. It should not be used for
 general enquiries.
 
 **Note**: The automatic release period for scenarios using simplified departure procedure has been set to 45 minutes.
@@ -985,15 +976,5 @@ Summer Time (BST) the NCTS clock will be minus 1 hour.
 | 2    | Send an email request to cancel the declaration                                                                                                 | IE009 is sent to the declarant                                                                                                             |
 | 3    | Submit an arrival notification IE007 - Use either the ‘Normal Arrival GB-XI’ column or the ’Simplified Arrival GB-XI’ column on the ‘IE007’ tab | IE057 is sent to the declarant                                                                                                             |
 
-
-## Example XML response messages
-
-To facilitate your test planning and testing in NCTS6 Trader Test, we have created a selection of example XML
-response messages and put them in a zip file TODO: Update link
-
-**Note**: These example XML messages are intended to serve only as supplementary information and they are not connected
-in any way to the example XML messages in the NCTS6 Trader Test pack. Please refer to the [NCTS technical interface
-specification](https://developer.service.hmrc.gov.uk/guides/ctc-traders-tis/) for accurate and comprehensive
-information about how the fields in NCTS6 message types should be utilised.
 
 
