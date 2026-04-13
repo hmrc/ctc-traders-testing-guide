@@ -35,8 +35,11 @@ API phase 6 service guide.](https://developer.service.hmrc.gov.uk/guides/ctc-tra
 
 ### Availability Window
 
-The sandbox environment/Trader Test service will be available **24 hours, 7 days a week until 1 June** to support testing.
+The sandbox environment/Trader Test service will be available 24 hours, 7 days a week until 15 June to support testing.
 
-From 1 June onwards, availability will revert to **7am–7pm, Monday to Friday (UK time, GMT/BST)**.
+This period of 24 hour, 7 days a week availability will be extended if necessary (in exceptional circumstances or due to 
+issues in the service).
+
+**From June 15 onwards** (if not extended), availability will move to **7am-7pm, Monday to Friday (UK time, GMT/BST)**
 
 You must use our sandbox environment and Trader Test to test the compatibility of your software with CTC Traders API.
