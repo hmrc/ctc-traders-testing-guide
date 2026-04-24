@@ -138,9 +138,9 @@ Summer Time (BST) the NCTS clock will be minus 1 hour.
 
 **Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks (Simplified).
 
-| Step | Action                                                                                               | Expected Results                                                                                                                                                                |
-|------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant <br>B) IE028 is generated and sent to the declarant<br>C) IE055 is sent to the declarant<br>D) IE051 is sent to the declarant after 5 minutes |
+| Step | Action                                                                                               | Expected Results                                                                                                                                                                 |
+|------|------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Simplified GB-XI’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant <br>B) IE028 is generated and sent to the declarant<br>C) IE055 is sent to the declarant<br>D) IE051 is sent to the declarant after 60 minutes |
 
 **Type of Movement:** Standard GB Departures
 
@@ -240,9 +240,9 @@ Summer Time (BST) the NCTS clock will be minus 1 hour.
 
 **Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks (Simplified).
 
-| Step | Action                                                                                               | Expected Results                                                                                                                                                                |
-|------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant <br>B) IE028 is generated and sent to the declarant<br>C) IE055 is sent to the declarant<br>D) IE051 is sent to the declarant after 5 minutes |
+| Step | Action                                                                                               | Expected Results                                                                                                                                                                 |
+|------|------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Simplified XI-GB’ column on the ‘IE015’ tab | A) IE928 is sent to the declarant <br>B) IE028 is generated and sent to the declarant<br>C) IE055 is sent to the declarant<br>D) IE051 is sent to the declarant after 60 minutes |
 
 **Type of Movement:** Standard XI Departures
 
@@ -655,10 +655,10 @@ Summer Time (BST) the NCTS clock will be minus 1 hour.
 
 **Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks
 
-| Step | Action                                                                                           | Expected Results                                                                                                                         |
-|------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                           |
-| 2    | Send an email to accept and release the declaration.                                             | A) IE028 is generated and sent to the declarant<br>B) IE055 is sent to the declarant.<br>C) IE051 is sent to the declarant after 5 mins. |
+| Step | Action                                                                                           | Expected Results                                                                                                                          |
+|------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Normal GB-XI’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                            |
+| 2    | Send an email to accept and release the declaration.                                             | A) IE028 is generated and sent to the declarant<br>B) IE055 is sent to the declarant.<br>C) IE051 is sent to the declarant after 60 mins. |
 
 **Type of Movement:** Standard GB Departures
 
@@ -777,10 +777,10 @@ Summer Time (BST) the NCTS clock will be minus 1 hour.
 
 **Test Purpose:** To demonstrate the message exchange where an invalid GRN is used and the declaration is rejected as a result of failing guarantee checks (Normal).
 
-| Step | Action                                                                                           | Expected Results                                                                                                                         |
-|------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                           |
-| 2    | Send an email to accept and release the declaration                                              | A) IE028 is generated and sent to the declarant<br>B) IE055 is sent to the declarant.<br>C) IE051 is sent to the declarant after 5 mins. |
+| Step | Action                                                                                           | Expected Results                                                                                                                          |
+|------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Submit a declaration IE015 with incorrect GRN - Use the ‘Normal XI-GB’ column on the ‘IE015’ tab | IE928 is sent to the declarant                                                                                                            |
+| 2    | Send an email to accept and release the declaration                                              | A) IE028 is generated and sent to the declarant<br>B) IE055 is sent to the declarant.<br>C) IE051 is sent to the declarant after 60 mins. |
 
 **Type of Movement:** Standard XI Departures
 
